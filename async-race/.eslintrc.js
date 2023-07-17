@@ -12,7 +12,7 @@ module.exports = {
     ecmaVersion: "latest",
     project: "./tsconfig.json",
   },
-  rules: {},
+  rules: {"no-console":0},
   root: true,
   ignorePatterns: ["webpack.config.js", ".eslintrc.js"]
 };
