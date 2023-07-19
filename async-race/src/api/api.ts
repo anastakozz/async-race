@@ -1,7 +1,7 @@
 import { winnerObj } from "../utils/types";
 const baseURl = "http://127.0.0.1:3000";
 
-export async function getWinners() {
+export async function getWinners(): Promise<winnerObj[]> {
   const response = await fetch(`${baseURl}/winners`);
   const data: winnerObj[] = await response.json();
   const dataModified = data.map(async (winner): Promise<winnerObj> => {
@@ -13,8 +13,8 @@ export async function getWinners() {
   return await Promise.all(dataModified);
 }
 
-export async function getCar(param: number): Promise<winnerObj> {
-  const response = await fetch(`${baseURl}/garage/${param}`);
+export async function getCar(id: number): Promise<winnerObj> {
+  const response = await fetch(`${baseURl}/garage/${id}`);
   const data: winnerObj = await response.json();
   return data;
 }
