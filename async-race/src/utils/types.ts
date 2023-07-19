@@ -1,7 +1,7 @@
 export type winnerObj = {
   id: number;
-  image?: SVGElement;
-  name: string;
-  wins: number;
-  time: number;
+  color?: string;
+  name?: string;
+  wins?: number;
+  time?: number;
 };

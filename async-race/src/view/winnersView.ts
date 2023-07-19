@@ -1,7 +1,6 @@
 import { winnerObj } from "../utils/types";
 import generateElement from "../utils/generateElement";
-
-const baseURl = "http://127.0.0.1:3000";
+import { getWinners } from "../api/api";
 
 export default class winnersView {
   winnersBlock: HTMLElement;
@@ -16,17 +15,10 @@ export default class winnersView {
     this.generateTable();
   }
 
-  getWinners = async () => {
-    const response = await fetch(`${baseURl}/winners`);
-    const data: winnerObj[] = await response.json();
-    return data;
-  };
-
   generateWinnersView = async () => {
     this.winnersBlock.replaceChildren("");
     const fragment = document.createDocumentFragment();
-    const data = await this.getWinners();
-    console.log(data);
+    const data = await getWinners();
 
     const title = generateElement({
       tag: "h1",
@@ -59,10 +51,10 @@ export default class winnersView {
     this.table.lastElementChild?.replaceChildren("");
     data.forEach((winner) => {
       const row = generateElement({ tag: "tr" });
-      const rowArr = [winner.id, winner.image, winner.name, winner.wins, winner.time];
+      const rowArr = [winner.id, winner.color, winner.name, winner.wins, winner.time];
       rowArr.forEach((item) => {
         row.append(generateElement({ tag: "th", textContent: `${item}` }));
-      })
+      });
       this.table.lastElementChild?.append(row);
     });
   }
