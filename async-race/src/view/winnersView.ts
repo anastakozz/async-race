@@ -8,8 +8,10 @@ export default class WinnersView {
   buttons: HTMLElement;
   data: winnerObj[];
   pages: number[];
+  stateChanged: boolean;
 
   constructor() {
+    this.stateChanged = false;
     this.pages = [];
     this.data = [];
     this.winnersBlock = generateElement({
@@ -21,7 +23,12 @@ export default class WinnersView {
     this.generateTable();
   }
 
-  generateWinnersView = async () => {
+  public openWinners = async () => {
+    document.querySelector(".garage-block")?.classList.add("hidden");
+    this.winnersBlock.classList.remove("hidden");
+  };
+
+  public generateWinnersView = async () => {
     this.winnersBlock.replaceChildren("");
     const fragment = document.createDocumentFragment();
     const data = await getWinners();
@@ -37,10 +44,11 @@ export default class WinnersView {
 
     fragment.append(title, this.table, this.buttons);
     this.winnersBlock.append(fragment);
+    this.winnersBlock.classList.add("hidden");
     document.body.append(this.winnersBlock);
   };
 
-  generateTable(): void {
+  private generateTable(): void {
     const tableHead = generateElement({ tag: "thead" });
     const tableBody = generateElement({ tag: "tbody" });
     const tr = generateElement({ tag: "tr" });
@@ -54,7 +62,7 @@ export default class WinnersView {
     this.table.append(tableHead, tableBody);
   }
 
-  generateTableRows(data: winnerObj[], startIndex: number): void {
+  private generateTableRows(data: winnerObj[], startIndex: number): void {
     this.table.lastElementChild?.replaceChildren("");
     const dataToShow = data.slice(startIndex, startIndex + 10);
     dataToShow.forEach((winner) => {
@@ -73,7 +81,7 @@ export default class WinnersView {
     });
   }
 
-  generatePagination(): HTMLElement {
+  private generatePagination(): HTMLElement {
     const paginationBlock = generateElement({ tag: "div" });
     const prevButton = generateElement({
       tag: "button",
@@ -96,7 +104,7 @@ export default class WinnersView {
     return paginationBlock;
   }
 
-  changePage(event: Event): void {
+  private changePage(event: Event): void {
     const id = (event.target as Element).id;
     if (id === "next-btn") {
       const startIndex = this.pages[0] * 10;
