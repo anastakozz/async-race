@@ -10,11 +10,13 @@ export default class HeaderView {
       tag: "button",
       class: ["header-button"],
       textContent: "to Garage",
+      id: "garageBtn",
     });
     this.toWinners = generateElement({
       tag: "button",
       class: ["header-button"],
       textContent: "to Winners",
+      id: "winnersBtn",
     });
     this.header = this.createHeaderView();
   }
