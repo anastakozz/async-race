@@ -3,6 +3,7 @@ import { carObj } from "../../utils/types";
 import { getGarage } from "../../api/api";
 import generateTrack from '../garage_components/generateTrack';
 
+
 export default class RaceView {
   raceBlock: HTMLElement;
   title: HTMLElement;
@@ -36,6 +37,11 @@ export default class RaceView {
     const cars = await getGarage();
     cars.forEach((car) => {
       this.generateCarTrack(car);
+    });
+    const carsSvg = Array.from(document.querySelectorAll(".car"));
+    carsSvg.map((node) => {
+      node.setAttribute("width", '50');
+      node.setAttribute("height", '50');
     });
   };
 

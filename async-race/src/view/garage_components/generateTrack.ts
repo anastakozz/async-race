@@ -1,5 +1,6 @@
 import generateElement from "../../utils/generateElement";
 import { carObj } from "../../utils/types";
+const svgPath = "./assets/snail_1.svg";
 
 export default function generateCarTrack(data: carObj): HTMLElement {
   const track = generateElement({
@@ -28,6 +29,21 @@ export default function generateCarTrack(data: carObj): HTMLElement {
           { tag: "button", class: ["button-b"], textContent: "B" },
         ],
       },
+      {
+        tag: "div",
+        class: ["car-div"],
+        children: [
+          {
+            tag: "object",
+            textContent: "snail",
+            setData: "./assets/snail_1.svg",
+            type: "image/svg+xml",
+            class: ["car"],
+            color: data.color,
+          },
+        ],
+      },
+      { tag: "span", class: ["flag-img"] },
     ],
   });
 
