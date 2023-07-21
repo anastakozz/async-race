@@ -1,4 +1,4 @@
-import { winnerObj } from "../utils/types";
+import { carObj } from "../utils/types";
 import generateElement from "../utils/generateElement";
 import { getWinners } from "../api/api";
 
@@ -6,7 +6,7 @@ export default class WinnersView {
   winnersBlock: HTMLElement;
   table: HTMLElement;
   buttons: HTMLElement;
-  data: winnerObj[];
+  data: carObj[];
   pages: number[];
   stateChanged: boolean;
 
@@ -23,7 +23,7 @@ export default class WinnersView {
     this.generateTable();
   }
 
-  public openWinners = async () => {
+  public openWinners = () => {
     document.querySelector(".garage-block")?.classList.add("hidden");
     this.winnersBlock.classList.remove("hidden");
   };
@@ -62,7 +62,7 @@ export default class WinnersView {
     this.table.append(tableHead, tableBody);
   }
 
-  private generateTableRows(data: winnerObj[], startIndex: number): void {
+  private generateTableRows(data: carObj[], startIndex: number): void {
     this.table.lastElementChild?.replaceChildren("");
     const dataToShow = data.slice(startIndex, startIndex + 10);
     dataToShow.forEach((winner) => {
