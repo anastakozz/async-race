@@ -10,7 +10,9 @@ export type markUp = {
   tag: string;
   class?: string[];
   type?: string;
+  setData?: string,
   id?: string;
-  textContent?: string
+  textContent?: string;
+  color?: string;
   children?: markUp[];
 }
