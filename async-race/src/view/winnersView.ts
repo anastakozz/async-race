@@ -97,6 +97,12 @@ export default class WinnersView {
       textContent: "next",
     });
 
+    nextButton.setAttribute("disabled", "true");
+
+    if (this.pages[1] === 1) {
+      nextButton.setAttribute("disabled", "true");
+    }
+
     paginationBlock.addEventListener("click", (event) => {
       this.changePage(event);
     });
