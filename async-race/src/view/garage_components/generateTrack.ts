@@ -1,7 +1,8 @@
 import generateElement from "../../utils/generateElement";
 import { carObj } from "../../utils/types";
+import { inlineSnail } from "./snail";
 
-export default function generateCarTrack(data: carObj): HTMLElement {
+export default function generateTrack(data: carObj): HTMLElement {
   const track = generateElement({
     tag: "div",
     class: ["race-track"],
@@ -36,6 +37,9 @@ export default function generateCarTrack(data: carObj): HTMLElement {
       { tag: "span", class: ["flag-img"] },
     ],
   });
+
+  const carSvg = lowerRow.querySelector(".car");
+  if (carSvg) carSvg.innerHTML = inlineSnail;
 
   track.append(upperRow, lowerRow);
 

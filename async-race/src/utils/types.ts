@@ -1,5 +1,5 @@
 export type carObj = {
-  id: number;
+  id?: number;
   color?: string;
   name?: string;
   wins?: number;

@@ -13,7 +13,7 @@ export async function getWinners(): Promise<carObj[]> {
   return await Promise.all(dataModified);
 }
 
-export async function getCar(id: number): Promise<carObj> {
+export async function getCar(id: number | undefined): Promise<carObj> {
   const response = await fetch(`${baseURl}/garage/${id}`);
   const data: carObj = await response.json();
   return data;
@@ -23,4 +23,13 @@ export async function getGarage(): Promise<carObj[]> {
   const response = await fetch(`${baseURl}/garage`);
   const data = await response.json();
   return data;
+}
+
+export async function createCar(params: carObj): Promise<void> {
+  const response = await fetch(`${baseURl}/garage`,{
+    method: 'POST',
+    headers: {'Content-type': "application/json"},
+    body: JSON.stringify(params),
+  })
+  const car = await response.json();
 }

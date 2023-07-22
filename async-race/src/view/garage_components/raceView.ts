@@ -2,7 +2,6 @@ import generateElement from "../../utils/generateElement";
 import { carObj } from "../../utils/types";
 import { getGarage } from "../../api/api";
 import generateTrack from "../garage_components/generateTrack";
-import { snailSvg, inlineSnail } from "./snail";
 
 export default class RaceView {
   raceBlock: HTMLElement;
@@ -34,28 +33,19 @@ export default class RaceView {
   };
 
   public updateRace = async () => {
+    this.raceBlock.replaceChildren('');
+    this.updateTitle();
+    this.raceBlock.append(this.title);
     const cars = await getGarage();
     cars.forEach((car) => {
       this.generateCarTrack(car);
     });
-    console.log(snailSvg);
-
-    ////Option 1 - cloneNode svg
-    // const carsSvg = Array.from(document.querySelectorAll(".car"));
-    // carsSvg.map((node) => {
-    //   node.append(snailSvg.cloneNode(true));
-    // });
-
-    //Option 2 - innerHTML
-    const carsSvg = Array.from(document.querySelectorAll(".car"));
-    carsSvg.map((node) => {
-      node.innerHTML = inlineSnail;
-    });
   };
 
-  private generateCarTrack(data: carObj): void {
+  public async generateCarTrack(data: carObj): Promise<void> {
     const track = generateTrack(data);
     this.raceBlock.append(track);
+    await this.updateTitle();
   }
 
   public getBlock(): HTMLElement {
