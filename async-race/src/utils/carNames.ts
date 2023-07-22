@@ -1,0 +1,26 @@
+export const carNames = [
+  "Blitz",
+  "Flash",
+  "Rapida",
+  "Speedy",
+  "Veloce",
+  "Mad Max",
+  "Neutrino",
+  "Lemonade Joe",
+  "Eagle Eye",
+  "Blind Lemon",
+  "Bullfrog",
+];
+export const carSurnames = [
+  "the Furious",
+  "the Racer",
+  "the Rocket",
+  "the First",
+  "the Great",
+  "the Fastest",
+  "the Chaser",
+  "the Winner",
+  "the Slowest",
+  "the Snail",
+  "the Lucky",
+];
