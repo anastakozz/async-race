@@ -1,7 +1,7 @@
 import generateElement from "../utils/generateElement";
 import CarsGeneratorView from "./garage_components/carsGeneratorView";
 import RaceView from "./garage_components/raceView";
-import createGarageCar from "../api/createGarageCar";
+import setListeners from "./garage_components/setListeners";
 
 export default class GarageView {
   garageBlock: HTMLElement;
@@ -19,17 +19,12 @@ export default class GarageView {
       this.carsGenerator.getBlock(),
       this.raceView.getBlock()
     );
-    this.setListeners();
     document.body.append(this.garageBlock);
+    setListeners(this.raceView);
   }
 
   public openGarage = (): void => {
     document.querySelector(".winners-block")?.classList.add("hidden");
     this.garageBlock.classList.remove("hidden");
   };
-
-  private setListeners(): void {
-    const createCarBlock = this.carsGenerator.generatorBlock.firstChild;
-    createCarBlock?.childNodes[3].addEventListener("click", () => {createGarageCar(this.raceView)} );
-  }
 }
