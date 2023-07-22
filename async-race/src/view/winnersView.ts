@@ -1,6 +1,6 @@
 import { carObj } from "../utils/types";
 import generateElement from "../utils/generateElement";
-import { getWinners } from "../api/api";
+import { getWinners } from "../api/getApi";
 
 export default class WinnersView {
   winnersBlock: HTMLElement;

@@ -40,8 +40,7 @@ export default function generateTrack(data: carObj): HTMLElement {
 
   const carSvg = lowerRow.querySelector(".car");
   if (carSvg) carSvg.innerHTML = inlineSnail;
-
+  
   track.append(upperRow, lowerRow);
-
   return track;
 }

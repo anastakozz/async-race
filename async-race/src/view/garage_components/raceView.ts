@@ -1,6 +1,6 @@
 import generateElement from "../../utils/generateElement";
 import { carObj } from "../../utils/types";
-import { getGarage } from "../../api/api";
+import { getGarage } from "../../api/getApi";
 import generateTrack from "../garage_components/generateTrack";
 
 export default class RaceView {
@@ -33,7 +33,7 @@ export default class RaceView {
   };
 
   public updateRace = async () => {
-    this.raceBlock.replaceChildren('');
+    this.raceBlock.replaceChildren("");
     this.updateTitle();
     this.raceBlock.append(this.title);
     const cars = await getGarage();
