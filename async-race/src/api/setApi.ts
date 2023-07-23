@@ -8,3 +8,15 @@ export async function createCar(params: carObj): Promise<void> {
     body: JSON.stringify(params),
   });
 }
+
+export async function deleteCarFromGarage(param: number): Promise<void> {
+  await fetch(`${baseURl}/garage/${param}`, {
+    method: "DELETE",
+  });
+}
+
+export async function deleteCarFromWinners(param: number): Promise<void> {
+  await fetch(`${baseURl}/winners/${param}`, {
+    method: "DELETE",
+  });
+}

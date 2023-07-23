@@ -1,12 +1,14 @@
 import generateElement from "../../utils/generateElement";
 import { carObj } from "../../utils/types";
 import { inlineSnail } from "./snail";
+import setRaceViewListeners from "../garage_components/setRaceViewListeners";
 
 export default function generateTrack(data: carObj): HTMLElement {
   const track = generateElement({
     tag: "div",
     class: ["race-track"],
   });
+  track.id = `${data.id}`;
   const upperRow = generateElement({
     tag: "div",
     class: ["track-upper-row"],
@@ -40,7 +42,8 @@ export default function generateTrack(data: carObj): HTMLElement {
 
   const carSvg = lowerRow.querySelector(".car");
   if (carSvg) carSvg.innerHTML = inlineSnail;
-  
+
   track.append(upperRow, lowerRow);
+  setRaceViewListeners(track);
   return track;
 }
