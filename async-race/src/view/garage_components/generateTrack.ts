@@ -1,7 +1,6 @@
 import generateElement from "../../utils/generateElement";
 import { carObj } from "../../utils/types";
 import { inlineSnail } from "./snail";
-import setRaceViewListeners from "../garage_components/setRaceViewListeners";
 
 export default function generateTrack(data: carObj): HTMLElement {
   const track = generateElement({
@@ -44,6 +43,5 @@ export default function generateTrack(data: carObj): HTMLElement {
   if (carSvg) carSvg.innerHTML = inlineSnail;
 
   track.append(upperRow, lowerRow);
-  setRaceViewListeners(track);
   return track;
 }

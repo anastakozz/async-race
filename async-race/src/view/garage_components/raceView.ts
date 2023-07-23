@@ -2,6 +2,7 @@ import generateElement from "../../utils/generateElement";
 import { carObj } from "../../utils/types";
 import { getGarage } from "../../api/getApi";
 import generateTrack from "../garage_components/generateTrack";
+import setRaceViewListeners from "../garage_components/setRaceViewListeners";
 import {
   generatePaginationButtons,
   generatePages,
@@ -94,6 +95,7 @@ export default class RaceView {
 
   public async generateCarTrack(data: carObj): Promise<void> {
     const track = generateTrack(data);
+    setRaceViewListeners(track);
     this.carsBlock.append(track);
   }
 
