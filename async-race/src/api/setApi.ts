@@ -9,6 +9,14 @@ export async function createCar(params: carObj): Promise<void> {
   });
 }
 
+export async function updateCar(params: carObj): Promise<void> {
+  await fetch(`${baseURl}/garage/${params.id}`, {
+    method: "PUT",
+    headers: { "Content-type": "application/json" },
+    body: JSON.stringify(params),
+  });
+}
+
 export async function deleteCarFromGarage(param: number): Promise<void> {
   await fetch(`${baseURl}/garage/${param}`, {
     method: "DELETE",

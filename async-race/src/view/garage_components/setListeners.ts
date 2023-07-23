@@ -9,11 +9,6 @@ export default function setListeners(raceView: RaceView): void {
     createGarageCar(raceView);
   });
 
-  const updateCarButton = document.querySelector(".update-btn");
-  updateCarButton?.addEventListener("click", () => {
-    updateGarageCar(raceView);
-  });
-
   const raceButton = document.querySelector(".race-btn");
   raceButton?.addEventListener("click", () => {
     console.log("START RACE");
@@ -27,7 +22,6 @@ export default function setListeners(raceView: RaceView): void {
 
   const generateButton = document.querySelector(".gen-btn");
   generateButton?.addEventListener("click", () => {
-    console.log("Generate 100 cars");
     generateCars(raceView);
   });
 }
