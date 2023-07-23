@@ -6,6 +6,7 @@ import {
   generatePages,
   changePage,
 } from "./pagination";
+import { inlineSnail } from "../view/garage_components/snail";
 
 export default class WinnersView {
   winnersBlock: HTMLElement;
@@ -16,7 +17,7 @@ export default class WinnersView {
   itemsPerPage = 10;
 
   constructor() {
-    this.pages = [1,1];
+    this.pages = [1, 1];
     this.data = [];
     this.winnersBlock = generateElement({
       tag: "div",
@@ -85,16 +86,16 @@ export default class WinnersView {
     );
     dataToShow.forEach((winner) => {
       const row = generateElement({ tag: "tr" });
-      const rowArr = [
-        winner.id,
-        winner.color,
-        winner.name,
-        winner.wins,
-        winner.time,
-      ];
+      const rowArr = [winner.name, winner.wins, winner.time];
+
+      row.append(generateElement({ tag: "th", textContent: `${winner.id}` }));
+      const image = generateElement({ tag: "svg", color: `${winner.color}` });
+      image.innerHTML = inlineSnail;
+      row.append(image);
       rowArr.forEach((item) => {
         row.append(generateElement({ tag: "th", textContent: `${item}` }));
       });
+
       this.table.lastElementChild?.append(row);
     });
   }
