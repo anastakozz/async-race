@@ -22,6 +22,6 @@ export default async function generateCar(raceView: RaceView): Promise<void> {
 const getRandomColor = (): string => {
   const colors: number[] = new Array(3);
   colors.fill(0);
-  const result = colors.map(() => getRandomNum(0, 255));
-  return `rgb(${result})`;
+  const result = (colors.map(() => getRandomNum(0, 255).toString(16))).join('');
+  return `#${result}`;
 };
