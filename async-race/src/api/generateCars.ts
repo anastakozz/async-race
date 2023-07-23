@@ -15,7 +15,7 @@ export default async function generateCar(raceView: RaceView): Promise<void> {
     carsArr.push(obj);
   });
 
-  await carsArr.forEach((car) => createCar(car));
+  carsArr.forEach(async (car) => await createCar(car));
   await raceView.updateRace();
 }
 

@@ -1,7 +1,7 @@
 import RaceView from "./raceView";
 import createGarageCar from "../../api/createGarageCar";
 import updateGarageCar from "../../api/updateGarageCar";
-import generateCars from '../../api/generateCars';
+import generateCars from "../../api/generateCars";
 
 export default function setListeners(raceView: RaceView): void {
   const createCarButton = document.querySelector(".create-btn");

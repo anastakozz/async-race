@@ -8,21 +8,14 @@ export default class RaceView {
   title: HTMLElement;
 
   constructor() {
-    this.raceBlock = generateElement({
-      tag: "div",
-      class: ["race"],
-    });
+    this.raceBlock = generateElement({ tag: "div", class: ["race"] });
     this.title = this.createTitle();
     this.updateTitle();
     this.updateRace();
   }
 
   private createTitle(): HTMLElement {
-    const title = generateElement({
-      tag: "h2",
-      class: ["garage-title"],
-      textContent: "Garage ()",
-    });
+    const title = generateElement({ tag: "h2", class: ["garage-title"] });
     this.raceBlock.append(title);
     return title;
   }
