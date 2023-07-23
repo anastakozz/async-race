@@ -14,7 +14,10 @@ export default async function createGarageCar(
     } else {
       const data = { name: newName.value, color: newColor.value };
       await createCar(data);
-      await raceView.generateCarTrack(data);
+      await raceView.updateTitles();
+      await raceView.updateRace((raceView.pages[0] - 1) * raceView.itemsPerPage);
     }
+    newName.value = "";
+    newColor.value = "#000000";
   }
 }

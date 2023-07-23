@@ -1,6 +1,11 @@
 import { carObj } from "../utils/types";
 import generateElement from "../utils/generateElement";
 import { getWinners } from "../api/getApi";
+import {
+  generatePaginationButtons,
+  generatePages,
+  changePage,
+} from "./pagination";
 
 export default class WinnersView {
   winnersBlock: HTMLElement;
@@ -8,18 +13,26 @@ export default class WinnersView {
   buttons: HTMLElement;
   data: carObj[];
   pages: number[];
-  stateChanged: boolean;
+  itemsPerPage = 10;
 
   constructor() {
-    this.stateChanged = false;
-    this.pages = [];
+    this.pages = [1,1];
     this.data = [];
     this.winnersBlock = generateElement({
       tag: "div",
       class: ["winners-block"],
     });
     this.table = generateElement({ tag: "table", class: ["winners-table"] });
-    this.buttons = this.generatePagination();
+    this.buttons = generatePaginationButtons();
+    this.buttons.addEventListener("click", (event) => {
+      changePage(
+        this.buttons,
+        this.pages,
+        this.itemsPerPage,
+        this.generateTableRows.bind(this),
+        event
+      );
+    });
     this.generateTable();
   }
 
@@ -31,18 +44,20 @@ export default class WinnersView {
   public generateWinnersView = async () => {
     this.winnersBlock.replaceChildren("");
     const fragment = document.createDocumentFragment();
-    const data = await getWinners();
+    this.data = await getWinners();
 
     const title = generateElement({
       tag: "h1",
       class: ["winners-title"],
-      textContent: `Winners(${data.length})`,
+      textContent: `Winners(${this.data.length})`,
     });
-    this.generateTableRows(data, 0);
-    this.data = data;
-    this.pages = [1, Math.ceil(data.length / 10)]; //this.pages = [current page, pages total]
+    this.generateTableRows(0);
+    this.pages = generatePages(this.data, this.itemsPerPage, this.pages[0]);
 
     fragment.append(title, this.table, this.buttons);
+    if (this.pages[1] === 1) {
+      this.buttons.lastElementChild?.setAttribute("disabled", "true");
+    }
     this.winnersBlock.append(fragment);
     this.winnersBlock.classList.add("hidden");
     document.body.append(this.winnersBlock);
@@ -62,9 +77,12 @@ export default class WinnersView {
     this.table.append(tableHead, tableBody);
   }
 
-  private generateTableRows(data: carObj[], startIndex: number): void {
+  public generateTableRows(startIndex: number): void {
     this.table.lastElementChild?.replaceChildren("");
-    const dataToShow = data.slice(startIndex, startIndex + 10);
+    const dataToShow = this.data.slice(
+      startIndex,
+      startIndex + this.itemsPerPage
+    );
     dataToShow.forEach((winner) => {
       const row = generateElement({ tag: "tr" });
       const rowArr = [
@@ -79,57 +97,5 @@ export default class WinnersView {
       });
       this.table.lastElementChild?.append(row);
     });
-  }
-
-  private generatePagination(): HTMLElement {
-    const paginationBlock = generateElement({ tag: "div" });
-    const prevButton = generateElement({
-      tag: "button",
-      class: ["page-button"],
-      id: "prev-btn",
-      textContent: "prev",
-    });
-    prevButton.setAttribute("disabled", "true");
-    const nextButton = generateElement({
-      tag: "button",
-      class: ["page-button"],
-      id: "next-btn",
-      textContent: "next",
-    });
-
-    nextButton.setAttribute("disabled", "true");
-
-    if (this.pages[1] === 1) {
-      nextButton.setAttribute("disabled", "true");
-    }
-
-    paginationBlock.addEventListener("click", (event) => {
-      this.changePage(event);
-    });
-    paginationBlock.append(prevButton, nextButton);
-    return paginationBlock;
-  }
-
-  private changePage(event: Event): void {
-    const id = (event.target as Element).id;
-    if (id === "next-btn") {
-      const startIndex = this.pages[0] * 10;
-      this.generateTableRows(this.data, startIndex);
-      this.buttons.firstElementChild?.removeAttribute("disabled");
-      this.pages[0] += 1;
-
-      if (this.pages[0] === this.pages[1]) {
-        this.buttons.lastElementChild?.setAttribute("disabled", "true");
-      }
-    } else if (id === "prev-btn") {
-      this.pages[0] -= 1;
-      const startIndex = (this.pages[0] - 1) * 10;
-      this.generateTableRows(this.data, startIndex);
-      this.buttons.lastElementChild?.removeAttribute("disabled");
-
-      if (this.pages[0] === 1) {
-        this.buttons.firstElementChild?.setAttribute("disabled", "true");
-      }
-    }
   }
 }

@@ -4,7 +4,7 @@ import getRandomNum from "../utils/getRandomNum";
 import { getNamesComposition } from "../utils/getNamesComposition";
 import { carObj } from "../utils/types";
 
-export default async function generateCar(raceView: RaceView): Promise<void> {
+export default async function generateCars(raceView: RaceView): Promise<void> {
   const carsArr: carObj[] = [];
   const arr = getNamesComposition();
 
@@ -16,7 +16,8 @@ export default async function generateCar(raceView: RaceView): Promise<void> {
   });
 
   carsArr.forEach(async (car) => await createCar(car));
-  await raceView.updateRace();
+  await raceView.updateTitles();
+  await raceView.updateRace((raceView.pages[0] - 1) * raceView.itemsPerPage);
 }
 
 const getRandomColor = (): string => {

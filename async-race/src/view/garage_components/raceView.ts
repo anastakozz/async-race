@@ -2,43 +2,99 @@ import generateElement from "../../utils/generateElement";
 import { carObj } from "../../utils/types";
 import { getGarage } from "../../api/getApi";
 import generateTrack from "../garage_components/generateTrack";
+import {
+  generatePaginationButtons,
+  generatePages,
+  changePage,
+} from "../pagination";
 
 export default class RaceView {
   raceBlock: HTMLElement;
-  title: HTMLElement;
+  carsBlock: HTMLElement;
+  buttons: HTMLElement;
+  titles: HTMLElement;
+  pages: number[];
+  data: carObj[];
+  itemsPerPage = 7;
 
   constructor() {
+    this.pages = [1,1];
+    this.data = [];
     this.raceBlock = generateElement({ tag: "div", class: ["race"] });
-    this.title = this.createTitle();
-    this.updateTitle();
-    this.updateRace();
+    this.carsBlock = generateElement({ tag: "div", class: ["cars-block"] });
+
+    this.titles = this.createTitles();
+    this.updateTitles();
+    this.buttons = generatePaginationButtons();
+    this.createRace();
+
+    this.buttons.addEventListener("click", (event) => {
+      changePage(
+        this.buttons,
+        this.pages,
+        this.itemsPerPage,
+        this.updateRace.bind(this),
+        event
+      );
+      this.updatePageNumTitle();
+    });
   }
 
-  private createTitle(): HTMLElement {
-    const title = generateElement({ tag: "h2", class: ["garage-title"] });
-    this.raceBlock.append(title);
-    return title;
+  private createTitles(): HTMLElement {
+    const titleDiv = generateElement({
+      tag: "div",
+      class: ["title-div"],
+      children: [
+        { tag: "h2", class: ["garage-title"] },
+        { tag: "h2", class: ["pages-num-title"] },
+      ],
+    });
+    this.raceBlock.append(titleDiv);
+    return titleDiv;
   }
 
-  public updateTitle = async () => {
-    const data = await getGarage();
-    this.title.textContent = `Garage (${data.length})`;
+  public updateTitles = async (): Promise<void> => {
+    this.data = await getGarage();
+    this.pages = generatePages(this.data, 7, this.pages[0]);
+
+    this.updateGarageLength(this.data.length);
+    this.updatePageNumTitle();
   };
 
-  public updateRace = async () => {
-    this.raceBlock.replaceChildren("");
-    this.updateTitle();
-    this.raceBlock.append(this.title);
-    const cars = await getGarage();
-    cars.forEach((car) => {
+  private updateGarageLength = (length: number): void => {
+    if (this.titles.firstElementChild instanceof HTMLElement) {
+      this.titles.firstElementChild.textContent = `Garage (${length})`;
+    }
+  };
+
+  private updatePageNumTitle = (): void => {
+    if (this.titles.lastElementChild instanceof HTMLElement) {
+      this.titles.lastElementChild.textContent = `Page ${this.pages[0]}/${this.pages[1]}`;
+    }
+  };
+
+  private createRace = async (): Promise<void> => {
+    this.raceBlock.append(this.titles, this.carsBlock, this.buttons);
+    await this.updateTitles();
+    this.updateRace(0);
+  };
+
+  public updateRace = async (startIndex: number): Promise<void> => {
+    this.carsBlock.replaceChildren("");
+    const carsToShow = this.data.slice(startIndex, startIndex + 7);
+    carsToShow.forEach((car) => {
       this.generateCarTrack(car);
     });
+    if (this.pages[1] === 1) {
+      this.buttons.lastElementChild?.setAttribute("disabled", "true");
+    } else {
+      this.buttons.lastElementChild?.removeAttribute("disabled");
+    }
   };
 
   public async generateCarTrack(data: carObj): Promise<void> {
     const track = generateTrack(data);
-    this.raceBlock.append(track);
-    await this.updateTitle();
+    this.carsBlock.append(track);
   }
 
   public getBlock(): HTMLElement {
