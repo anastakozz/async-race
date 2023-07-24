@@ -1,6 +1,8 @@
-import { createCar } from "./setApi";
+// import { createCar } from "./setApi";
 import isInputElement from "../utils/isInputElement";
 import RaceView from "../view/garage_components/raceView";
+import ApiSetManager from "./ApiSetManager";
+const manager = new ApiSetManager().getManager();
 
 export default async function createGarageCar(
   raceView: RaceView
@@ -13,9 +15,11 @@ export default async function createGarageCar(
       alert("Please, enter a car name");
     } else {
       const data = { name: newName.value, color: newColor.value };
-      await createCar(data);
+      await manager.createCar(data);
       await raceView.updateTitles();
-      await raceView.updateRace((raceView.pages[0] - 1) * raceView.itemsPerPage);
+      await raceView.updateRace(
+        (raceView.pages[0] - 1) * raceView.itemsPerPage
+      );
     }
     newName.value = "";
     newColor.value = "#000000";

@@ -1,12 +1,13 @@
 import isInputElement from "../utils/isInputElement";
 import { getCar } from "./getApi";
-import { updateCar } from "./setApi";
+import ApiSetManager from "./ApiSetManager";
+const manager = new ApiSetManager().getManager();
 
 export default async function activateUpdateCar(event: Event) {
   const updateGarageCar = async (): Promise<void> => {
     if (isInputElement(newName) && isInputElement(newColor) && id) {
       const data = { id: +id, name: newName.value, color: newColor.value };
-      await updateCar(data);
+      await manager.updateCar(data);
 
       const car = track.querySelector(".car");
       if (car instanceof HTMLElement) car.style.color = newColor.value;

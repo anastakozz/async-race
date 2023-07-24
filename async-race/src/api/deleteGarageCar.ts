@@ -1,5 +1,7 @@
-import { deleteCarFromGarage, deleteCarFromWinners } from "./setApi";
+// import { deleteCarFromGarage, deleteCarFromWinners } from "./setApi";
 import { getGarage } from "./getApi";
+import ApiSetManager from "./ApiSetManager";
+const manager = new ApiSetManager().getManager();
 
 export default async function deleteGarageCar(event: Event): Promise<void> {
   const title = document.querySelector(".garage-title");
@@ -11,8 +13,8 @@ export default async function deleteGarageCar(event: Event): Promise<void> {
     track?.remove();
 
     if (id) {
-      await deleteCarFromGarage(+id);
-      await deleteCarFromWinners(+id);
+      await manager.deleteCarFromGarage(+id);
+      await manager.deleteCarFromWinners(+id);
       const data = await getGarage();
       if (title) title.textContent = `Garage (${data.length})`;
     }

@@ -1,13 +1,17 @@
 import WinnersView from "../view/winnersView";
 import GarageView from "../view/garageView";
+import ApiSetManager from "../api/ApiSetManager";
 
 export default class Controller {
   winners: WinnersView | null;
   garage: GarageView | null;
+  apiSetManager: ApiSetManager | null;
 
   constructor() {
     this.winners = null;
     this.garage = null;
+    this.apiSetManager = new ApiSetManager();
+    this.apiSetManager.subscribe(this);
   }
 
   public generateStartView(): void {
@@ -26,5 +30,9 @@ export default class Controller {
         this.winners?.openWinners();
         break;
     }
+  }
+
+  public updateWinners() {
+    this.winners?.generateWinnersView();
   }
 }
