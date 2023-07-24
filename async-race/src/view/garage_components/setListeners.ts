@@ -23,3 +23,4 @@ export default function setListeners(raceView: RaceView): void {
     await generateCars(raceView);
   });
 }
+

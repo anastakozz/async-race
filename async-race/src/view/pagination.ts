@@ -21,7 +21,6 @@ export function generatePaginationButtons(): HTMLElement {
 export function generatePages(data: carObj[], itemsPerPage: number, startPage: number): number[] {
   const pagesCount = data.length === 0 ? 1 : Math.ceil(data.length / itemsPerPage);
   const pages = [startPage, pagesCount];
-  console.log(pages);
   return pages;
 }
 

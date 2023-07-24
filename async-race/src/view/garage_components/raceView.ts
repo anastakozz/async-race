@@ -25,7 +25,6 @@ export default class RaceView {
     this.carsBlock = generateElement({ tag: "div", class: ["cars-block"] });
 
     this.titles = this.createTitles();
-    this.updateTitles();
     this.buttons = generatePaginationButtons();
     this.createRace();
 
