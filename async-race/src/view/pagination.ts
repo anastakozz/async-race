@@ -5,13 +5,13 @@ export function generatePaginationButtons(): HTMLElement {
   const paginationBlock = generateElement({ tag: "div" });
   const prevButton = generateElement({
     tag: "button",
-    class: ["page-button", "prev-btn"],
+    class: ["page-button", "prev-btn", "btn"],
     textContent: "prev",
   });
   prevButton.setAttribute("disabled", "true");
   const nextButton = generateElement({
     tag: "button",
-    class: ["page-button", "next-btn"],
+    class: ["page-button", "next-btn", "btn"],
     textContent: "next",
   });
   paginationBlock.append(prevButton, nextButton);

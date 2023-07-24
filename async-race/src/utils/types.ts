@@ -23,3 +23,8 @@ export type driveParams = {
 };
 
 export type driveResponse = { success: true };
+
+export type raceResult = {
+  id: number;
+  time: number;
+}

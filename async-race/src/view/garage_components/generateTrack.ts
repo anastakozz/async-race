@@ -12,8 +12,8 @@ export default function generateTrack(data: carObj): HTMLElement {
     tag: "div",
     class: ["track-upper-row"],
     children: [
-      { tag: "button", class: ["select-btn"], textContent: "Select" },
-      { tag: "button", class: ["remove-btn"], textContent: "Remove" },
+      { tag: "button", class: ["select-btn", "btn"], textContent: "Select" },
+      { tag: "button", class: ["remove-btn", "btn"], textContent: "Remove" },
       { tag: "span", class: ["car-name"], textContent: `${data.name}` },
     ],
   });
@@ -26,8 +26,8 @@ export default function generateTrack(data: carObj): HTMLElement {
         tag: "div",
         class: ["buttons-div"],
         children: [
-          { tag: "button", class: ["button-a"], textContent: "A" },
-          { tag: "button", class: ["button-b"], textContent: "B" },
+          { tag: "button", class: ["button-a", "btn"], textContent: "A" },
+          { tag: "button", class: ["button-b", "btn"], textContent: "B" },
         ],
       },
       {

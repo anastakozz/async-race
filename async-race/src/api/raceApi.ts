@@ -1,4 +1,4 @@
-import { driveParams, driveResponse } from "../utils/types";
+import { driveParams } from "../utils/types";
 const baseURl = "http://127.0.0.1:3000";
 
 export async function switchEngine(
@@ -9,7 +9,7 @@ export async function switchEngine(
     method: "PATCH",
   });
   const data: driveParams = await response.json();
-  console.log(`switchEngine`, data);
+  console.log(`switchEngine`, id);
   return data;
 }
 

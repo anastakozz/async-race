@@ -8,13 +8,13 @@ export default class HeaderView {
   constructor() {
     this.toGarage = generateElement({
       tag: "button",
-      class: ["header-button"],
+      class: ["header-button", "btn"],
       textContent: "to Garage",
       id: "garageBtn",
     });
     this.toWinners = generateElement({
       tag: "button",
-      class: ["header-button"],
+      class: ["header-button", "btn"],
       textContent: "to Winners",
       id: "winnersBtn",
     });

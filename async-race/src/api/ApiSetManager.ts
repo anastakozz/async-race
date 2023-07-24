@@ -2,7 +2,6 @@ import Controller from "../controller/controller";
 import { carObj } from "../utils/types";
 const baseURl = "http://127.0.0.1:3000";
 
-
 export default class ApiSetManager {
   private static manager = new ApiSetManager();
   controller: Controller | null;
@@ -45,6 +44,24 @@ export default class ApiSetManager {
   public deleteCarFromWinners = async (param: number): Promise<void> => {
     await fetch(`${baseURl}/winners/${param}`, {
       method: "DELETE",
+    });
+    ApiSetManager.manager.controller?.updateWinners();
+  };
+
+  public createWinner = async (params: carObj): Promise<void> => {
+    await fetch(`${baseURl}/winners`, {
+      method: "PUT",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(params),
+    });
+    ApiSetManager.manager.controller?.updateWinners();
+  };
+
+  public updateWinner = async (params: carObj): Promise<void> => {
+    await fetch(`${baseURl}/winners/${params.id}`, {
+      method: "PUT",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(params),
     });
     ApiSetManager.manager.controller?.updateWinners();
   };

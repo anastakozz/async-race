@@ -1,7 +1,8 @@
 import { switchEngine, swithToDrive } from "./raceApi";
 import { driveParams } from "../utils/types";
+import {raceResult} from '../utils/types';
 
-export default async function startCar(event: Event): Promise<void> {
+export async function getTrack(event: Event): Promise<void> {
   const elem = event.target;
 
   if (elem && elem instanceof HTMLElement) {
@@ -9,19 +10,28 @@ export default async function startCar(event: Event): Promise<void> {
     elem.nextElementSibling?.removeAttribute("disabled");
     const track = elem.parentElement?.parentElement?.parentElement;
     const id = track?.id;
-    console.log(`car ${id} started`);
-    if (id) {
-      const params = await switchEngine(+id, "started");
-      driveCar(track, +id, params);
-    }
+    if (id) await startCar(+id);
   }
 }
 
-const driveCar = async (track: HTMLElement, id: number, params: driveParams) => {
-    console.log('startAnimation()', id);
-    const result = await swithToDrive(+id);
-    if (!result) {
-        console.log('stopAnimation()', id);
-    }
-    
+export async function startCar(id: number): Promise<raceResult | null> {
+  console.log(`car ${id} started`);
+
+  const params = await switchEngine(+id, "started");
+  console.log(id, params);
+  const result = await driveCar(+id, params);
+  return result;
+}
+
+const driveCar = async (id: number, params: driveParams): Promise<raceResult | null>  => {
+  const time = params.distance / params.velocity;
+  console.log("startAnimation()", id);
+  const result = await swithToDrive(+id);
+  if (!result) {
+    console.log("stopAnimation()", id);
+    return null;
+  } else {
+    const result = { id: id, time: time };
+    return result;
+  }
 };

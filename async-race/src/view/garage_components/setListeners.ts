@@ -1,6 +1,7 @@
 import RaceView from "./raceView";
 import createGarageCar from "../../api/createGarageCar";
 import generateCars from "../../api/generateCars";
+import { startRace, resetRace } from "../../api/manageRace";
 
 export default function setListeners(raceView: RaceView): void {
   const createCarButton = document.querySelector(".create-btn");
@@ -10,12 +11,12 @@ export default function setListeners(raceView: RaceView): void {
 
   const raceButton = document.querySelector(".race-btn");
   raceButton?.addEventListener("click", () => {
-    console.log("START RACE");
+    startRace();
   });
 
   const resetButton = document.querySelector(".reset-btn");
   resetButton?.addEventListener("click", () => {
-    console.log("RESET");
+    resetRace();
   });
 
   const generateButton = document.querySelector(".gen-btn");
@@ -23,4 +24,3 @@ export default function setListeners(raceView: RaceView): void {
     await generateCars(raceView);
   });
 }
-

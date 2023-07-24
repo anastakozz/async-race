@@ -11,8 +11,8 @@ export default async function stopCar(event: Event): Promise<void> {
 
     if (id) {
       const params = await switchEngine(+id, "stopped");
-      console.log('bringCarBack()', id);
-      // bringCarBack(track);
+    //   "stopAnimation()", id
+      console.log('bringCarBack():', id);
     }
   }
 }

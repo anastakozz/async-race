@@ -20,7 +20,7 @@ export default class CarsGeneratorView {
       children: [
         { tag: "input", class: ["create-name", "input"] },
         { tag: "input", type: "color", class: ["pick-color", "input"] },
-        { tag: "button", class: ["create-btn"], textContent: "create" },
+        { tag: "button", class: ["create-btn", "btn"], textContent: "create" },
       ],
     });
     const updateCarBlock = generateElement({
@@ -30,7 +30,7 @@ export default class CarsGeneratorView {
       children: [
         { tag: "input", class: ["update-name", "input"] },
         { tag: "input", type: "color", class: ["pick-color", "input"] },
-        { tag: "button", class: ["update-btn"], textContent: "update" },
+        { tag: "button", class: ["update-btn", "btn"], textContent: "update" },
       ],
     });
     this.generatorBlock.append(createCarBlock, updateCarBlock);
@@ -41,9 +41,9 @@ export default class CarsGeneratorView {
       tag: "div",
       class: ["race-btns"],
       children: [
-        { tag: "button", textContent: "RACE", class: ["race-btn"] },
-        { tag: "button", textContent: "RESET", class: ["reset-btn"] },
-        { tag: "button", textContent: "Generate cars", class: ["gen-btn"] },
+        { tag: "button", textContent: "RACE", class: ["race-btn", "btn"] },
+        { tag: "button", textContent: "RESET", class: ["reset-btn", "btn"] },
+        { tag: "button", textContent: "Generate cars", class: ["gen-btn", "btn"] },
       ],
     });
     this.generatorBlock.append(raceButtons);

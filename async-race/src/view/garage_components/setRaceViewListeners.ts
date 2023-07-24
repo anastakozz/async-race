@@ -1,6 +1,6 @@
 import deleteGarageCar from "../../api/deleteGarageCar";
 import activateUpdateCar from "../../api/updateGarageCar";
-import startCar from "../../api/startCar";
+import {getTrack} from "../../api/startCar";
 import stopCar from "../../api/stopCar";
 
 export default async function setRaceViewListener(
@@ -22,7 +22,7 @@ export default async function setRaceViewListener(
   });
 
   startButton?.addEventListener("click", async (event) => {
-    await startCar(event);
+    await getTrack(event);
   });
 
   stopButton?.addEventListener("click", async (event) => {
