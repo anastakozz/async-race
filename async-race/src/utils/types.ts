@@ -10,9 +10,16 @@ export type markUp = {
   tag: string;
   class?: string[];
   type?: string;
-  setData?: string,
+  setData?: string;
   id?: string;
   textContent?: string;
   color?: string;
   children?: markUp[];
-}
+};
+
+export type driveParams = {
+  velocity: number;
+  distance: number;
+};
+
+export type driveResponse = { success: true };
