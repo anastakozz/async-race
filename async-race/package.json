@@ -11,6 +11,8 @@
     "eslint-plugin-n": "^16.0.1",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-webpack-plugin": "^4.0.1",
+    "gh-pages": "^5.0.0",
+    "gh-pages-cli": "^0.2.0",
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.3",
     "prettier": "^2.8.8",
@@ -31,7 +33,9 @@
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
-    "serve": "webpack serve"
+    "serve": "webpack serve",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist -e async-race"
   },
   "dependencies": {
     "eslint-config-airbnb-base": "^15.0.0"
