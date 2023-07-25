@@ -13,9 +13,6 @@ export default async function activateUpdateCar(event: Event) {
       if (car instanceof HTMLElement) car.style.color = newColor.value;
       const carName = track.querySelector(".car-name");
       if (carName instanceof HTMLElement) carName.textContent = newName.value;
-
-      newName.value = "";
-      newColor.value = "#000000";
     }
 
     updateCarButton?.removeEventListener("click", updateGarageCar);
@@ -28,8 +25,8 @@ export default async function activateUpdateCar(event: Event) {
   const oldData = id ? await getCar(+id) : null;
 
   const updateCarBlock = document.querySelector(".updateCar-div");
-  const newName = updateCarBlock?.children[0];
-  const newColor = updateCarBlock?.children[1];
+  const newName = updateCarBlock?.children[1];
+  const newColor = updateCarBlock?.children[2];
 
   if (isInputElement(newName) && isInputElement(newColor)) {
     if (oldData?.name) newName.value = oldData.name;

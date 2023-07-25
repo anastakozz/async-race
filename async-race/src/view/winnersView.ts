@@ -100,8 +100,8 @@ export default class WinnersView {
       const rowArr = [winner.name, winner.wins, winner.time];
 
       row.append(generateElement({ tag: "th", textContent: `${index + 1}` }));
-      const image = generateElement({ tag: "svg", color: `${winner.color}` });
-      image.innerHTML = inlineSnail;
+      const image = generateElement({tag: "th", children: [{ tag: "svg", color: `${winner.color}` }]});
+      if(image.firstElementChild)image.firstElementChild.innerHTML = inlineSnail;
       row.append(image);
       rowArr.forEach((item) => {
         row.append(generateElement({ tag: "th", textContent: `${item}` }));

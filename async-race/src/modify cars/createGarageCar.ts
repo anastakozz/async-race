@@ -8,8 +8,8 @@ export default async function createGarageCar(
   raceView: RaceView
 ): Promise<void> {
   const createCarBlock = document.querySelector(".createCar-div");
-  const newName = createCarBlock?.children[0];
-  const newColor = createCarBlock?.children[1];
+  const newName = createCarBlock?.children[1];
+  const newColor = createCarBlock?.children[2];
   if (isInputElement(newName) && isInputElement(newColor)) {
     if (newName.value === "") {
       alert("Please, enter a car name");

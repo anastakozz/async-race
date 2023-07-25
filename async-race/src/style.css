@@ -1,26 +1,101 @@
+html {
+    background-image: url(../assets/image.jpg);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    color: white;
+    padding: 10px 20px;
+}
+
+header {
+    margin-bottom: 5px;
+}
+
 .hidden {
     display: none;
 }
 
+.btn {
+    transition: all 0.15s ease-out;
+    cursor: pointer;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 0.75rem;
+    background-color: transparent;
+    border-radius: 5px;
+    border: 1px solid rgb(160, 140, 180);
+    color: white;
+    padding: 2px 8px;
+    margin: 2px 2px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.btn:hover {
+    background-color: rgb(70, 60, 100);
+}
+
+.btn:disabled {
+    border-color: rgb(70, 60, 100);
+    color: rgb(160, 140, 180);
+    cursor: auto
+}
+
+.btn:disabled:hover {
+    background-color: transparent;
+}
+
+
+.span-name {
+    display: inline-block;
+    box-sizing: border-box;
+    font-size: 0.75rem;
+    padding: 2px;
+    min-width: 90px;
+    margin-bottom: 10px;
+}
+
+
+.input {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0 10px
+}
+
+.pick-color {
+    background-color: rgb(160, 140, 180);
+}
+
 .race-track {
-    border-bottom: black dashed 1px;
+    border-bottom: rgb(160, 140, 180) dashed 1px;
+    margin-bottom: 5px;
+    /* min-height: 80px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .track-lower-row {
-min-height: 30px;
-display: flex;
-justify-content: space-between;
+    min-height: 30px;
+    display: flex;
+    justify-content: space-between;
 }
+
 .buttons-div {
     width: 80px;
 }
 
 .car-div {
-    width:calc(100% - 80px);
+    width: calc(100% - 80px);
 }
 
 .car {
+    margin-top: 7px;
     width: min-content;
+}
+
+.car-name {
+    margin-left: 40px;
+    color: rgb(200, 180, 220);
 }
 
 .title-div {
@@ -37,4 +112,18 @@ justify-content: space-between;
     background-image: url(../assets/checkered-flag-svgrepo-com.svg);
     background-size: contain;
     background-repeat: no-repeat;
+    filter: invert(100%);
+}
+
+table {
+    table-layout: auto;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+
+
+th{
+    font-size: 0.75rem;
+    text-align: center;
 }
