@@ -12,6 +12,10 @@ header {
     margin-bottom: 5px;
 }
 
+h2 {
+    margin: 15px 0;
+}
+
 .hidden {
     display: none;
 }
@@ -129,9 +133,12 @@ table {
     margin-bottom: 20px;
 }
 
-
-
 th{
     font-size: 0.75rem;
     text-align: center;
+}
+
+.pagination {
+    width:fit-content;
+    margin: auto;
 }

@@ -2,7 +2,10 @@ import generateElement from "../utils/generateElement";
 import { carObj } from "../utils/types";
 
 export function generatePaginationButtons(): HTMLElement {
-  const paginationBlock = generateElement({ tag: "div" });
+  const paginationBlock = generateElement({
+    tag: "div",
+    class: ["pagination"],
+  });
   const prevButton = generateElement({
     tag: "button",
     class: ["page-button", "prev-btn", "btn"],
@@ -18,8 +21,13 @@ export function generatePaginationButtons(): HTMLElement {
   return paginationBlock;
 }
 
-export function generatePages(data: carObj[], itemsPerPage: number, startPage: number): number[] {
-  const pagesCount = data.length === 0 ? 1 : Math.ceil(data.length / itemsPerPage);
+export function generatePages(
+  data: carObj[],
+  itemsPerPage: number,
+  startPage: number
+): number[] {
+  const pagesCount =
+    data.length === 0 ? 1 : Math.ceil(data.length / itemsPerPage);
   const pages = [startPage, pagesCount];
   return pages;
 }
@@ -30,7 +38,7 @@ export function changePage(
   itemsPerPage: number,
   callback: Function,
   event?: Event,
-  direction?: string,
+  direction?: string
 ): void {
   const dir = direction ? direction : (event?.target as Element).textContent;
   if (dir === "next") {
