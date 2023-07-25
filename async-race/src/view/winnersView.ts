@@ -44,6 +44,7 @@ export default class WinnersView {
 
   public generateWinnersView = async () => {
     this.winnersBlock.replaceChildren("");
+
     const fragment = document.createDocumentFragment();
     this.data = await getWinners();
 
@@ -58,6 +59,8 @@ export default class WinnersView {
     fragment.append(title, this.table, this.buttons);
     if (this.pages[1] === 1) {
       this.buttons.lastElementChild?.setAttribute("disabled", "true");
+    } else {
+      this.buttons.lastElementChild?.removeAttribute("disabled");
     }
     this.winnersBlock.append(fragment);
     this.winnersBlock.classList.add("hidden");
