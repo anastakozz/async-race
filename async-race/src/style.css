@@ -142,3 +142,12 @@ th{
     width:fit-content;
     margin: auto;
 }
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: x-large;
+    text-shadow: 0 0 1em rgb(200, 180, 220), 0 0 0.2em pink;
+}

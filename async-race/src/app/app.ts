@@ -10,8 +10,6 @@ export default class App {
   }
 
   start(): void {
-    // alert("Дорогой Проверяющий, пожалуйста проверь мою работу через день-другой. Я очень стараюсь добить этих улиток. Спасибо большое!  ")
-
     this.header = new HeaderView();
     const controller = new Controller();
     controller.generateStartView();

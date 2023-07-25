@@ -2,8 +2,9 @@ import controlButtonsRace from "../utils/controlButtons";
 import { raceResult } from "../utils/types";
 import { startCar } from "./startCar";
 import { getCar, getWinner } from "../api/getApi";
-import {bringCarBack} from './stopCar'
+import { bringCarBack } from "./stopCar";
 import ApiSetManager from "../api/ApiSetManager";
+import generateElement from "../utils/generateElement";
 const manager = new ApiSetManager().getManager();
 
 export async function startRace() {
@@ -26,7 +27,10 @@ export async function startRace() {
 
 export async function resetRace() {
   const tracks = Array.from(document.querySelectorAll(".race-track"));
-  tracks.forEach((track) => { if (track instanceof HTMLElement) bringCarBack(track)})
+  document.querySelector(".popup")?.remove();
+  tracks.forEach((track) => {
+    if (track instanceof HTMLElement) bringCarBack(track);
+  });
 }
 
 async function findWinner(
@@ -37,9 +41,15 @@ async function findWinner(
   const winner = arr.sort((a, b) => a.time - b.time)[0];
   winner.time = Math.ceil(winner.time);
   const winnerCar = await getCar(winner.id);
-  alert(
-    `Aaaaaaand! ${winnerCar.name} showed the best time: ${winner.time}!!! WOW!`
-  );
+  // alert(
+  //   `Aaaaaaand! ${winnerCar.name} showed the best time: ${winner.time}!!! WOW!`
+  // );
+  const popup = generateElement({
+    tag: "div",
+    class: ["popup"],
+    textContent: `${winnerCar.name} showed the best time: ${winner.time}!!! WOW!`,
+  });
+  document.body.append(popup);
   controlButtonsRace("enable");
   return await checkWinner(winner);
 }
