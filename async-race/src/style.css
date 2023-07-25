@@ -19,6 +19,10 @@ justify-content: space-between;
     width:calc(100% - 80px);
 }
 
+.car {
+    width: min-content;
+}
+
 .title-div {
     display: flex;
     justify-content: space-between;

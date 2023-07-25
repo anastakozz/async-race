@@ -13,6 +13,7 @@ export async function getTrack(event: Event): Promise<void> {
     if (id) await startCar(+id);
   }
 }
+import startAnimation from './animateCar';
 
 export async function startCar(id: number): Promise<raceResult | null> {
   console.log(`car ${id} started`);
@@ -27,11 +28,13 @@ const driveCar = async (
   id: number,
   params: driveParams
 ): Promise<raceResult | null> => {
-  const time = params.distance / params.velocity;
-  console.log("startAnimation()", id);
+  const time = params.distance / params.velocity / 1000;
+  console.log("startAnimation()", id, time);
+  const animation = new startAnimation(id, time);
   const result = await swithToDrive(+id);
   if (!result) {
     console.log("stopAnimation()", id);
+    window.cancelAnimationFrame(animation.requestID);
     return null;
   } else {
     const result = { id: id, time: time };
