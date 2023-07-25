@@ -81,6 +81,7 @@ export default class WinnersView {
 
       if (item === "Wins" || "Best time(sec)") {
         element.addEventListener("click", this.sortData);
+        element.classList.add("clickable");
       }
       tr.append(element);
     });
@@ -100,8 +101,12 @@ export default class WinnersView {
       const rowArr = [winner.name, winner.wins, winner.time];
 
       row.append(generateElement({ tag: "th", textContent: `${index + 1}` }));
-      const image = generateElement({tag: "th", children: [{ tag: "svg", color: `${winner.color}` }]});
-      if(image.firstElementChild)image.firstElementChild.innerHTML = inlineSnail;
+      const image = generateElement({
+        tag: "th",
+        children: [{ tag: "svg", color: `${winner.color}` }],
+      });
+      if (image.firstElementChild)
+        image.firstElementChild.innerHTML = inlineSnail;
       row.append(image);
       rowArr.forEach((item) => {
         row.append(generateElement({ tag: "th", textContent: `${item}` }));
@@ -137,5 +142,5 @@ export default class WinnersView {
     this.generateWinnersContent();
     target?.removeEventListener("click", this.reverseData);
     target?.addEventListener("click", this.sortData);
-  }
+  };
 }
