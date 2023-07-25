@@ -5,15 +5,25 @@ export default async function stopCar(event: Event): Promise<void> {
 
   if (elem && elem instanceof HTMLElement) {
     elem.setAttribute("disabled", "true");
-    const id = elem.parentElement?.parentElement?.parentElement?.id;
-    console.log(`car ${id} stopped`);
+    const track = elem.parentElement?.parentElement?.parentElement;
+
+    const startButton = track?.querySelector(".button-a") as HTMLElement;
+    const id = track?.id;
 
     if (id) {
       const params = await switchEngine(+id, "stopped");
-    //   "stopAnimation()", id
-      console.log('bringCarBack():', id);//+enable startcar-button
+      if (params) {
+        bringCarBack(track);
+        startButton.removeAttribute("disabled");
+      }
     }
   }
 }
 
+function bringCarBack(track: HTMLElement) {
+  const car = track?.querySelector(".car") as HTMLElement;
 
+  const newCar = car.cloneNode(true) as HTMLElement;
+  newCar.style.transform = "none";
+  car.replaceWith(newCar);
+}

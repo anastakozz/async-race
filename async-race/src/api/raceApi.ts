@@ -9,7 +9,6 @@ export async function switchEngine(
     method: "PATCH",
   });
   const data: driveParams = await response.json();
-  console.log(`switchEngine`, id);
   return data;
 }
 
@@ -19,7 +18,6 @@ export async function swithToDrive(id: number): Promise<boolean> {
       method: "PATCH",
     });
     const data = await response.json();
-    console.log(data);
     return true;
   } catch (err) {
     if (err instanceof Error) {

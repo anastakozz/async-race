@@ -6,13 +6,11 @@ import ApiSetManager from "../api/ApiSetManager";
 const manager = new ApiSetManager().getManager();
 
 export async function startRace() {
-  console.log("start race");
   const stoppedArr: number[] = [];
 
   controlButtonsRace("disable", stoppedArr);
 
   const tracks = Array.from(document.querySelectorAll(".race-track"));
-  console.log(tracks);
   const resultsArr: raceResult[] = [];
 
   Promise.allSettled(
@@ -45,13 +43,11 @@ async function findWinner(
 }
 
 async function checkWinner(winner: raceResult): Promise<void> {
-  console.log(winner);
   const newObj = await getWinner(winner.id);
   if (!newObj.wins) {
     newObj.id = winner.id;
     newObj.time = winner.time;
     newObj.wins = 1;
-    console.log(newObj);
     await manager.createWinner(newObj);
   } else {
     newObj.wins += 1;
