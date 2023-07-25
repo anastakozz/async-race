@@ -1,7 +1,7 @@
-import deleteGarageCar from "../../api/deleteGarageCar";
-import activateUpdateCar from "../../api/updateGarageCar";
-import {getTrack} from "../../api/startCar";
-import stopCar from "../../api/stopCar";
+import deleteGarageCar from "../../modify cars/deleteGarageCar";
+import activateUpdateCar from "../../modify cars/updateGarageCar";
+import { getTrack } from "../../race/startCar";
+import stopCar from "../../race/stopCar";
 
 export default async function setRaceViewListener(
   track: HTMLElement

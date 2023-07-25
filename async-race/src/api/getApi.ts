@@ -13,10 +13,12 @@ export async function getWinners(): Promise<carObj[]> {
   return await Promise.all(dataModified);
 }
 
-export async function getWinner(id: number | undefined): Promise<carObj[]> {
-  const response = await fetch(`${baseURl}/winners/${id}`);
-  const data: carObj[] = await response.json();
-  return data;
+export async function getWinner(
+  id: number | undefined
+): Promise<carObj> {
+    const response = await fetch(`${baseURl}/winners/${id}`);
+    const data: carObj = await response.json();
+    return data;
 }
 
 export async function getCar(id: number | undefined): Promise<carObj> {

@@ -1,7 +1,7 @@
 // import { createCar } from "./setApi";
 import isInputElement from "../utils/isInputElement";
 import RaceView from "../view/garage_components/raceView";
-import ApiSetManager from "./ApiSetManager";
+import ApiSetManager from "../api/ApiSetManager";
 const manager = new ApiSetManager().getManager();
 
 export default async function createGarageCar(

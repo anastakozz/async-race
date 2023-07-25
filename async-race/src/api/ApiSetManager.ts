@@ -50,7 +50,7 @@ export default class ApiSetManager {
 
   public createWinner = async (params: carObj): Promise<void> => {
     await fetch(`${baseURl}/winners`, {
-      method: "PUT",
+      method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(params),
     });

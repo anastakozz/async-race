@@ -3,7 +3,7 @@ import RaceView from "../view/garage_components/raceView";
 import getRandomNum from "../utils/getRandomNum";
 import { getNamesComposition } from "../utils/getNamesComposition";
 import { carObj } from "../utils/types";
-import ApiSetManager from "./ApiSetManager";
+import ApiSetManager from "../api/ApiSetManager";
 const manager = new ApiSetManager().getManager();
 
 export default async function generateCars(raceView: RaceView): Promise<void> {

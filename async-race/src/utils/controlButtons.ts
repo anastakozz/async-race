@@ -1,28 +1,34 @@
-export const enableButtonsForRace = (store: number[]) => {
-  const resetBtn = document.querySelector(".reset-btn");
-  resetBtn?.removeAttribute("disabled");
-
+export default function controlButtonsRace(action: string, store?: number[]) {
+  const buttonsAll = document.querySelectorAll(".btn");
   const stopButtons = document.querySelectorAll(".button-b");
-  const buttonsToEnable = Array.from(stopButtons);
-  if (resetBtn) buttonsToEnable.push(resetBtn);
+  const startButtons = document.querySelectorAll(".button-a");
+  const pageButtons = document.querySelectorAll(".page-button");
 
-
-
-  buttonsToEnable.forEach((button) => {
-    button.removeAttribute("disabled");
-    button.addEventListener("click", (event) => {
-      countStop(event);
-    });
+  buttonsAll.forEach((button) => {
+    button.toggleAttribute("disabled");
   });
+  pageButtons.forEach((button) => button.classList.toggle("hidden"));
 
-  function countStop(event: Event) {
+  if (action === "disable") {
+    startButtons.forEach((button) => button.setAttribute("disabled", "true"));
+    stopButtons.forEach((button) => {
+      button.addEventListener("click", countStops);
+      button.removeAttribute("disabled");
+    });
+  } else if (action === "enable") {
+    startButtons.forEach((button) => button.removeAttribute("disabled"));
+    stopButtons.forEach((button) => {
+      button.removeEventListener("click", countStops);
+      button.setAttribute("disabled", "true");
+    });
+  }
+
+  function countStops(event: Event) {
     const elem = event.target;
     if (elem && elem instanceof HTMLElement) {
       const track = elem.parentElement?.parentElement?.parentElement;
       const id = track?.id;
-      if(id) store.push(+id);
+      if (id && store) store.push(+id);
     }
   }
-};
-
-
+}

@@ -1,6 +1,6 @@
 import isInputElement from "../utils/isInputElement";
-import { getCar } from "./getApi";
-import ApiSetManager from "./ApiSetManager";
+import { getCar } from "../api/getApi";
+import ApiSetManager from "../api/ApiSetManager";
 const manager = new ApiSetManager().getManager();
 
 export default async function activateUpdateCar(event: Event) {

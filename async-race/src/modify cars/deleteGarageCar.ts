@@ -1,6 +1,6 @@
 // import { deleteCarFromGarage, deleteCarFromWinners } from "./setApi";
-import { getGarage } from "./getApi";
-import ApiSetManager from "./ApiSetManager";
+import { getGarage } from "../api/getApi";
+import ApiSetManager from "../api/ApiSetManager";
 const manager = new ApiSetManager().getManager();
 
 export default async function deleteGarageCar(event: Event): Promise<void> {

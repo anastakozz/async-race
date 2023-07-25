@@ -1,6 +1,6 @@
-import { switchEngine, swithToDrive } from "./raceApi";
+import { switchEngine, swithToDrive } from "../api/raceApi";
 import { driveParams } from "../utils/types";
-import {raceResult} from '../utils/types';
+import { raceResult } from "../utils/types";
 
 export async function getTrack(event: Event): Promise<void> {
   const elem = event.target;
@@ -23,7 +23,10 @@ export async function startCar(id: number): Promise<raceResult | null> {
   return result;
 }
 
-const driveCar = async (id: number, params: driveParams): Promise<raceResult | null>  => {
+const driveCar = async (
+  id: number,
+  params: driveParams
+): Promise<raceResult | null> => {
   const time = params.distance / params.velocity;
   console.log("startAnimation()", id);
   const result = await swithToDrive(+id);
