@@ -18,7 +18,7 @@ export default class ApiSetManager {
     return ApiSetManager.manager;
   }
 
-  public createCar = async (params: carObj): Promise<void> => {
+  public createCar = async (params: Partial<carObj>): Promise<void> => {
     await fetch(`${baseURl}/garage`, {
       method: "POST",
       headers: { "Content-type": "application/json" },
@@ -26,7 +26,7 @@ export default class ApiSetManager {
     });
   };
 
-  public updateCar = async (params: carObj): Promise<void> => {
+  public updateCar = async (params: Partial<carObj>): Promise<void> => {
     await fetch(`${baseURl}/garage/${params.id}`, {
       method: "PUT",
       headers: { "Content-type": "application/json" },

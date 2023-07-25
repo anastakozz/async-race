@@ -1,10 +1,11 @@
 export type carObj = {
-  id?: number;
-  color?: string;
-  name?: string;
-  wins?: number;
-  time?: number;
+  id: number;
+  color: string;
+  name: string;
+  wins: number;
+  time: number;
 };
+
 
 export type markUp = {
   tag: string;

@@ -7,11 +7,11 @@ import ApiSetManager from "../api/ApiSetManager";
 const manager = new ApiSetManager().getManager();
 
 export default async function generateCars(raceView: RaceView): Promise<void> {
-  const carsArr: carObj[] = [];
+  const carsArr: Partial<carObj>[] = [];
   const arr = getNamesComposition();
 
   arr.forEach((item) => {
-    const obj: carObj = {};
+    const obj: Partial<carObj> = {};
     obj.name = item;
     obj.color = getRandomColor();
     carsArr.push(obj);
