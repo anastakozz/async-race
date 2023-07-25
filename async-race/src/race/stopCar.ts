@@ -20,9 +20,8 @@ export default async function stopCar(event: Event): Promise<void> {
   }
 }
 
-function bringCarBack(track: HTMLElement) {
+export function bringCarBack(track: HTMLElement) {
   const car = track?.querySelector(".car") as HTMLElement;
-
   const newCar = car.cloneNode(true) as HTMLElement;
   newCar.style.transform = "none";
   car.replaceWith(newCar);

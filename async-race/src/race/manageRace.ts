@@ -1,7 +1,8 @@
 import controlButtonsRace from "../utils/controlButtons";
-import { carObj, raceResult } from "../utils/types";
+import { raceResult } from "../utils/types";
 import { startCar } from "./startCar";
 import { getCar, getWinner } from "../api/getApi";
+import {bringCarBack} from './stopCar'
 import ApiSetManager from "../api/ApiSetManager";
 const manager = new ApiSetManager().getManager();
 
@@ -24,7 +25,8 @@ export async function startRace() {
 }
 
 export async function resetRace() {
-  console.log("reset race");
+  const tracks = Array.from(document.querySelectorAll(".race-track"));
+  tracks.forEach((track) => { if (track instanceof HTMLElement) bringCarBack(track)})
 }
 
 async function findWinner(
