@@ -21,9 +21,6 @@ export async function swithToDrive(id: number): Promise<boolean> {
     await response.json();
     return true;
   } catch (err) {
-    if (err instanceof Error) {
-      console.log(err.message);
-    }
     return false;
   }
 }

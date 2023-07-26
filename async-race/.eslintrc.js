@@ -13,7 +13,6 @@ module.exports = {
     project: "./tsconfig.json",
   },
   rules: {
-    "no-console": 0,
     "import/no-cycle": 0,
     "no-param-reassign": 0,
     "class-methods-use-this": 0,
