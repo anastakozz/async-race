@@ -1,4 +1,4 @@
-export type carObj = {
+export type CarObj = {
   id: number;
   color: string;
   name: string;
@@ -6,8 +6,7 @@ export type carObj = {
   time: number;
 };
 
-
-export type markUp = {
+export type MarkUp = {
   tag: string;
   class?: string[];
   type?: string;
@@ -15,17 +14,17 @@ export type markUp = {
   id?: string;
   textContent?: string;
   color?: string;
-  children?: markUp[];
+  children?: MarkUp[];
 };
 
-export type driveParams = {
+export type DriveParams = {
   velocity: number;
   distance: number;
 };
 
-export type driveResponse = { success: true };
+export type DriveResponse = { success: true };
 
-export type raceResult = {
+export type RaceResult = {
   id: number;
   time: number;
-}
+};

@@ -1,11 +1,18 @@
-export default class startAnimation {
+export default class StartAnimation {
   car: HTMLElement;
+
   finish: number;
+
   track: HTMLElement | null;
+
   path: number;
+
   startTime: DOMHighResTimeStamp | null;
+
   startPosition: number;
+
   requestID: number;
+
   time: number;
 
   constructor(id: number, time: number) {
@@ -20,11 +27,11 @@ export default class startAnimation {
   }
 
   private getItem(): HTMLElement {
-    return this.track?.querySelector(".car") as HTMLElement;
+    return this.track?.querySelector('.car') as HTMLElement;
   }
 
   private getPath() {
-    const container = this.track?.querySelector(".car-div") as HTMLElement;
+    const container = this.track?.querySelector('.car-div') as HTMLElement;
     return container.offsetWidth - 55;
   }
 
@@ -33,8 +40,8 @@ export default class startAnimation {
     const timeProgress = (timestamp - this.startTime) / 1000;
     this.startTime = timestamp;
     const pathProgress = this.path * (timeProgress / this.time);
-    this.car.style.transform = `translateX(${(this.startPosition +=
-      pathProgress)}px)`;
+    this.car.style.transform = `translateX(${(this.startPosition
+      += pathProgress)}px)`;
 
     const position = this.car.getBoundingClientRect().x;
     if (position <= this.finish) {
@@ -43,6 +50,4 @@ export default class startAnimation {
       window.cancelAnimationFrame(this.requestID);
     }
   };
-}
-{
 }

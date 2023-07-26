@@ -1,40 +1,46 @@
-import generateElement from "../../utils/generateElement";
-import { carObj } from "../../utils/types";
-import { getGarage } from "../../api/getApi";
-import generateTrack from "../garage_components/generateTrack";
-import setRaceViewListeners from "../garage_components/setRaceViewListeners";
+import generateElement from '../../utils/generateElement';
+import { CarObj } from '../../utils/types';
+import { getGarage } from '../../api/getApi';
+import generateTrack from './generateTrack';
+import setRaceViewListeners from './setRaceViewListeners';
 import {
   generatePaginationButtons,
   generatePages,
   changePage,
-} from "../pagination";
+} from '../pagination';
 
 export default class RaceView {
   raceBlock: HTMLElement;
+
   carsBlock: HTMLElement;
+
   buttons: HTMLElement;
+
   titles: HTMLElement;
+
   pages: number[];
-  data: carObj[];
+
+  data: CarObj[];
+
   itemsPerPage = 7;
 
   constructor() {
-    this.pages = [1,1];
+    this.pages = [1, 1];
     this.data = [];
-    this.raceBlock = generateElement({ tag: "div", class: ["race"] });
-    this.carsBlock = generateElement({ tag: "div", class: ["cars-block"] });
+    this.raceBlock = generateElement({ tag: 'div', class: ['race'] });
+    this.carsBlock = generateElement({ tag: 'div', class: ['cars-block'] });
 
     this.titles = this.createTitles();
     this.buttons = generatePaginationButtons();
     this.createRace();
 
-    this.buttons.addEventListener("click", (event) => {
+    this.buttons.addEventListener('click', (event) => {
       changePage(
         this.buttons,
         this.pages,
         this.itemsPerPage,
         this.updateRace.bind(this),
-        event
+        event,
       );
       this.updatePageNumTitle();
     });
@@ -42,11 +48,11 @@ export default class RaceView {
 
   private createTitles(): HTMLElement {
     const titleDiv = generateElement({
-      tag: "div",
-      class: ["title-div"],
+      tag: 'div',
+      class: ['title-div'],
       children: [
-        { tag: "h2", class: ["garage-title"] },
-        { tag: "h2", class: ["pages-num-title"] },
+        { tag: 'h2', class: ['garage-title'] },
+        { tag: 'h2', class: ['pages-num-title'] },
       ],
     });
     this.raceBlock.append(titleDiv);
@@ -80,19 +86,19 @@ export default class RaceView {
   };
 
   public updateRace = async (startIndex: number): Promise<void> => {
-    this.carsBlock.replaceChildren("");
+    this.carsBlock.replaceChildren('');
     const carsToShow = this.data.slice(startIndex, startIndex + 7);
     carsToShow.forEach((car) => {
       this.generateCarTrack(car);
     });
     if (this.pages[1] === 1) {
-      this.buttons.lastElementChild?.setAttribute("disabled", "true");
+      this.buttons.lastElementChild?.setAttribute('disabled', 'true');
     } else {
-      this.buttons.lastElementChild?.removeAttribute("disabled");
+      this.buttons.lastElementChild?.removeAttribute('disabled');
     }
   };
 
-  public async generateCarTrack(data: carObj): Promise<void> {
+  public async generateCarTrack(data: CarObj): Promise<void> {
     const track = generateTrack(data);
     setRaceViewListeners(track);
     this.carsBlock.append(track);

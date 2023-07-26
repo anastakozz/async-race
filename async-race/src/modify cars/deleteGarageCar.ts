@@ -1,10 +1,11 @@
 // import { deleteCarFromGarage, deleteCarFromWinners } from "./setApi";
-import { getGarage } from "../api/getApi";
-import ApiSetManager from "../api/ApiSetManager";
+import { getGarage } from '../api/getApi';
+import ApiSetManager from '../api/ApiSetManager';
+
 const manager = new ApiSetManager().getManager();
 
 export default async function deleteGarageCar(event: Event): Promise<void> {
-  const title = document.querySelector(".garage-title");
+  const title = document.querySelector('.garage-title');
   const elem = event.target;
 
   if (elem && elem instanceof HTMLElement) {

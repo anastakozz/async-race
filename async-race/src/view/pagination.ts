@@ -1,33 +1,32 @@
-import generateElement from "../utils/generateElement";
-import { carObj } from "../utils/types";
+import generateElement from '../utils/generateElement';
+import { CarObj } from '../utils/types';
 
 export function generatePaginationButtons(): HTMLElement {
   const paginationBlock = generateElement({
-    tag: "div",
-    class: ["pagination"],
+    tag: 'div',
+    class: ['pagination'],
   });
   const prevButton = generateElement({
-    tag: "button",
-    class: ["page-button", "prev-btn", "btn"],
-    textContent: "prev",
+    tag: 'button',
+    class: ['page-button', 'prev-btn', 'btn'],
+    textContent: 'prev',
   });
-  prevButton.setAttribute("disabled", "true");
+  prevButton.setAttribute('disabled', 'true');
   const nextButton = generateElement({
-    tag: "button",
-    class: ["page-button", "next-btn", "btn"],
-    textContent: "next",
+    tag: 'button',
+    class: ['page-button', 'next-btn', 'btn'],
+    textContent: 'next',
   });
   paginationBlock.append(prevButton, nextButton);
   return paginationBlock;
 }
 
 export function generatePages(
-  data: carObj[],
+  data: CarObj[],
   itemsPerPage: number,
-  startPage: number
+  startPage: number,
 ): number[] {
-  const pagesCount =
-    data.length === 0 ? 1 : Math.ceil(data.length / itemsPerPage);
+  const pagesCount = data.length === 0 ? 1 : Math.ceil(data.length / itemsPerPage);
   const pages = [startPage, pagesCount];
   return pages;
 }
@@ -38,26 +37,26 @@ export function changePage(
   itemsPerPage: number,
   callback: Function,
   event?: Event,
-  direction?: string
+  direction?: string,
 ): void {
-  const dir = direction ? direction : (event?.target as Element).textContent;
-  if (dir === "next") {
+  const dir = direction || (event?.target as Element).textContent;
+  if (dir === 'next') {
     const startIndex = pages[0] * itemsPerPage;
     callback(startIndex);
-    buttons.firstElementChild?.removeAttribute("disabled");
+    buttons.firstElementChild?.removeAttribute('disabled');
     pages[0] += 1;
 
     if (pages[0] === pages[1]) {
-      buttons.lastElementChild?.setAttribute("disabled", "true");
+      buttons.lastElementChild?.setAttribute('disabled', 'true');
     }
-  } else if (dir === "prev") {
+  } else if (dir === 'prev') {
     pages[0] -= 1;
     const startIndex = (pages[0] - 1) * itemsPerPage;
     callback(startIndex);
-    buttons.lastElementChild?.removeAttribute("disabled");
+    buttons.lastElementChild?.removeAttribute('disabled');
 
     if (pages[0] === 1) {
-      buttons.firstElementChild?.setAttribute("disabled", "true");
+      buttons.firstElementChild?.setAttribute('disabled', 'true');
     }
   }
 }
