@@ -10,6 +10,8 @@ body {
 
 header {
     margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
 }
 
 h2 {
@@ -133,21 +135,45 @@ table {
     margin-bottom: 20px;
 }
 
-th{
+th {
     font-size: 0.75rem;
     text-align: center;
 }
 
 .pagination {
-    width:fit-content;
+    width: fit-content;
     margin: auto;
 }
 
 .popup {
+    width: 100%;
     position: fixed;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(0 -50%);
     font-size: x-large;
     text-shadow: 0 0 1em rgb(200, 180, 220), 0 0 0.2em pink;
+    text-align: center;
+}
+
+.link {
+    vertical-align: middle;
+    transition: all 0.3s;
+    cursor: pointer;
+    text-decoration: none;
+    color: rgb(200, 180, 220);
+    font-size: smaller;
+}
+
+.link:hover {
+    color: white
+}
+
+.rss-link {
+    margin-left: 15px;
+    display: inline-block;
+    background-image: url(../assets/logo_rs_text.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 30px;
 }

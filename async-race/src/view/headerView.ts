@@ -19,13 +19,41 @@ export default class HeaderView {
       id: "winnersBtn",
     });
     this.header = this.createHeaderView();
+    this.createLinks();
   }
 
-  createHeaderView(): HTMLElement {
+  public createHeaderView(): HTMLElement {
     const elem = generateElement({ tag: "header" });
-    elem.append(this.toGarage);
-    elem.append(this.toWinners);
+    const buttonWrapper = generateElement({
+      tag: "span",
+      class: ["button-wrapper"],
+    });
+    buttonWrapper.append(this.toGarage);
+    buttonWrapper.append(this.toWinners);
+    elem.append(buttonWrapper);
     document.body.append(elem);
     return elem;
+  }
+
+  private createLinks(): void {
+    const linkDiv = generateElement({
+      tag: "span",
+      class: ["links-container"],
+    });
+    const gitLink = generateElement({
+      tag: "a",
+      textContent: "anastakozz 2023",
+      class: ["link", "git-link"],
+    });
+    gitLink.setAttribute("href", "https://github.com/anastakozz");
+
+    const courseLink = generateElement({
+      tag: "a",
+      class: ["link", "rss-link"],
+    });
+    courseLink.setAttribute("href", "https://rs.school/js");
+
+    linkDiv.append(gitLink, courseLink);
+    this.header.append(linkDiv);
   }
 }
