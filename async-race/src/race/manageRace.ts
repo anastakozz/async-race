@@ -8,6 +8,7 @@ import generateElement from "../utils/generateElement";
 const manager = new ApiSetManager().getManager();
 
 export async function startRace() {
+  document.querySelector(".popup")?.remove();
   const stoppedArr: number[] = [];
 
   controlButtonsRace("disable", stoppedArr);
@@ -41,15 +42,12 @@ async function findWinner(
   const winner = arr.sort((a, b) => a.time - b.time)[0];
   winner.time = Math.ceil(winner.time);
   const winnerCar = await getCar(winner.id);
-  // alert(
-  //   `Aaaaaaand! ${winnerCar.name} showed the best time: ${winner.time}!!! WOW!`
-  // );
   const popup = generateElement({
     tag: "div",
     class: ["popup"],
-    textContent: `${winnerCar.name} showed the best time: ${winner.time}!!! WOW!`,
+    textContent: `${winnerCar.name} showed the best time: ${winner.time}sec!`,
   });
-  document.body.append(popup);
+  document.querySelector('.garage-block')?.append(popup);
   controlButtonsRace("enable");
   return await checkWinner(winner);
 }
