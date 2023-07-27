@@ -83,6 +83,12 @@ h2 {
     background-color: rgb(160, 140, 180);
 }
 
+.create-btn,
+.update-btn {
+    min-width: 65px;
+    margin: 0 10px;
+}
+
 .race-track {
     border-bottom: rgb(160, 140, 180) dashed 1px;
     margin-bottom: 5px;
@@ -139,8 +145,7 @@ table {
     margin-bottom: 20px;
 }
 
-th {
-    font-size: 0.75rem;
+th, td  {
     text-align: center;
 }
 

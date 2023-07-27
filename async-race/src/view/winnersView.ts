@@ -105,15 +105,15 @@ export default class WinnersView {
       const row = generateElement({ tag: 'tr' });
       const rowArr = [winner.name, winner.wins, winner.time];
 
-      row.append(generateElement({ tag: 'th', textContent: `${index + 1}` }));
+      row.append(generateElement({ tag: 'td', textContent: `${index + 1}` }));
       const image = generateElement({
-        tag: 'th',
+        tag: 'td',
         children: [{ tag: 'svg', color: `${winner.color}` }],
       });
       if (image.firstElementChild) image.firstElementChild.innerHTML = inlineSnail;
       row.append(image);
       rowArr.forEach((item) => {
-        row.append(generateElement({ tag: 'th', textContent: `${item}` }));
+        row.append(generateElement({ tag: 'td', textContent: `${item}` }));
       });
 
       this.table.lastElementChild?.append(row);
