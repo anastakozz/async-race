@@ -84,7 +84,7 @@ export default class WinnersView {
     rowArr.forEach((item) => {
       const element = generateElement({ tag: 'th', textContent: item });
 
-      if (item === ('Wins' || 'Best time(sec)')) {
+      if ((item === 'Wins') || (item === 'Best time(sec)')) {
         element.addEventListener('click', this.sortData);
         element.classList.add('clickable');
       }

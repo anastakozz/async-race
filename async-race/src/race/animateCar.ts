@@ -19,7 +19,7 @@ export default class StartAnimation {
     this.time = time;
     this.track = document.getElementById(`${id}`);
     this.car = this.getItem();
-    this.finish = window.innerWidth - 67;
+    this.finish = window.innerWidth - 75;
     this.path = this.getPath();
     this.startPosition = 0;
     this.startTime = null;

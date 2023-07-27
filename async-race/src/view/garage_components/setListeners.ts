@@ -11,6 +11,7 @@ export default function setListeners(raceView: RaceView): void {
 
   const raceButton = document.querySelector('.race-btn');
   raceButton?.addEventListener('click', () => {
+    resetRace();
     startRace();
   });
 
