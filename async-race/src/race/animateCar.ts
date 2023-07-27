@@ -19,6 +19,7 @@ export default class StartAnimation {
     this.time = time;
     this.track = document.getElementById(`${id}`);
     this.car = this.getItem();
+    this.car.classList.remove('dribble');
     this.finish = window.innerWidth - 75;
     this.path = this.getPath();
     this.startPosition = 0;

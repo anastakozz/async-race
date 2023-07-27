@@ -30,6 +30,8 @@ export async function getTrack(event: Event): Promise<void> {
     elem.setAttribute('disabled', 'true');
     elem.nextElementSibling?.removeAttribute('disabled');
     const track = elem.parentElement?.parentElement?.parentElement;
+    const car = track?.querySelector('.car');
+    car?.classList.add('dribble');
     const id = track?.id;
     if (id) await startCar(+id);
   }

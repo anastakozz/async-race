@@ -54,6 +54,8 @@ export async function startRace() {
   Promise.allSettled(
     tracks.map(async (track) => {
       if (track) {
+        const car = track?.querySelector('.car');
+        car?.classList.add('dribble');
         const res = await startCar(+track.id);
         if (res) resultsArr.push(res);
       }
